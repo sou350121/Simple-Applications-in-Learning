@@ -50,7 +50,7 @@ ax.set_zlabel("3rd Principal Component")
 plt.show()
 
 # Save the figure
-fig.savefig("mnist_pca_result.png")
+fig.savefig("PCA_mnist.png")
 
 '''
 The result of the PCA analysis is a three-dimensional scatter plot, 
