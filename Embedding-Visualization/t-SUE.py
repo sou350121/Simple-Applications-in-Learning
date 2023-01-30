@@ -30,7 +30,7 @@ import matplotlib.pyplot as plt
 from sklearn.datasets import load_digits
 from sklearn.manifold import TSNE
 
-# Load MNIST digits dataset
+# Load MNIST digits dataset from Sklearn (different from PCA.py)
 digits = load_digits()
 X = digits.data
 
@@ -38,7 +38,7 @@ X = digits.data
 tsne = TSNE(n_components=3)
 X_reduced = tsne.fit_transform(X)
 
-# Visualize the result
+# Visualize the 3D result
 fig = plt.figure(figsize=(10, 8))
 ax = fig.add_subplot(111, projection='3d')
 ax.scatter(X_reduced[:, 0], X_reduced[:, 1], X_reduced[:, 2], c=digits.target, cmap=plt.cm.get_cmap("jet", 10))
