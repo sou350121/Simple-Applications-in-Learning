@@ -25,7 +25,6 @@ Reference
 """
 import tensorflow as tf
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 from sklearn.decomposition import PCA
 
 # Load the MNIST dataset from TensorFlow

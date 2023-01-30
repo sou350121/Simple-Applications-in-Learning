@@ -35,7 +35,7 @@ import umap.plot
 from sklearn.datasets import load_digits
 import matplotlib.pyplot as plt
 
-
+# Load MNIST digits dataset from Sklearn
 digits = load_digits()
 
 mapper = umap.UMAP().fit(digits.data)

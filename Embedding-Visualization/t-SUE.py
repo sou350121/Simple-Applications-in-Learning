@@ -26,27 +26,26 @@ Introduction:
 Reference
 """
 
-import tensorflow as tf
-from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
+from sklearn.datasets import load_digits
+from sklearn.manifold import TSNE
 
-# Load MNIST dataset from Tensorflow
-(x_train, y_train), (x_test, y_test) = tf.keras.datasets.mnist.load_data()
+# Load MNIST digits dataset
+digits = load_digits()
+X = digits.data
 
-# Reshape data for t-SNE
-x_train = x_train.reshape(x_train.shape[0], -1)
-x_test = x_test.reshape(x_test.shape[0], -1)
-
-# Perform t-SNE
+# Perform t-SNE to reduce dimension to 3 features
 tsne = TSNE(n_components=3)
-x_train_tsne = tsne.fit_transform(x_train)
-x_test_tsne = tsne.fit_transform(x_test)
+X_reduced = tsne.fit_transform(X)
 
 # Visualize the result
-fig, ax = plt.subplots()
-scatter = ax.scatter(x_train_tsne[:, 0], x_train_tsne[:, 1], c=y_train, cmap='viridis')
-legend1 = ax.legend(*scatter.legend_elements(), loc="upper left", title="Classes")
-ax.add_artist(legend1)
-plt.title("t-SNE visualization of MNIST dataset")
-plt.savefig("tsne_mnist.png")
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(X_reduced[:, 0], X_reduced[:, 1], X_reduced[:, 2], c=digits.target, cmap=plt.cm.get_cmap("jet", 10))
+ax.set_xlabel("First Component")
+ax.set_ylabel("Second Component")
+ax.set_zlabel("Third Component")
 plt.show()
+
+# Save the result
+fig.savefig("tsne_mnist.png")
